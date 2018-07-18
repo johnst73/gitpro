@@ -1,0 +1,13 @@
+- hosts: all
+
+  become: yes
+
+  tasks:
+
+    - name: Stopping cron
+
+      service :
+
+        name: crond
+
+        state: stopped
