@@ -1,0 +1,14 @@
+---
+  - hosts: all
+    become: yes
+    tasks:
+      - name: install a package
+        package:
+          name: httpd
+          state: installed
+
+    tasks:
+      - name: start http
+        service:
+          name: httpd
+          state: started
