@@ -1,0 +1,29 @@
+<project name="creating files" default="chown" basedir=".">
+     <target name="files">
+        <touch file="../tmp/ant-test/file1"/>
+        <touch file="../tmp/ant-test/file2"/>
+        <touch file="../tmp/ant-test/file3"/>
+        <touch file="../tmp/ant-test/file4"/>
+    </target>
+
+    <target name="dir" depends="files">
+        <mkdir dir="../tmp/ant-test/artifacts"/>
+    </target>
+
+    <target name="copy" depends="dir">
+        <copy todir="../tmp/ant-test/artifacts">
+        <fileset dir="/tmp/ant-test/">
+        <exclude name="**/*artifacts"/>
+        </fileset>
+        </copy>
+    </target>
+	
+	<target name="chown" depends="copy">
+		<chown owner="jenuser1">
+		<fileset dir="/tmp/ant-test/artifacts">
+		<exclude name="**/config/**"/>
+		</fileset>
+		</chown>
+	</target>
+</project>
+
